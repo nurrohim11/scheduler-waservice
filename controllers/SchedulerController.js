@@ -7,21 +7,22 @@ module.exports = {
 
   wa:async(req, res)=>{
     try{
-      const { senderid, number, pesan } = req.body
+      // console.log('url ',url)
+      const { sender, number, message } = req.body
       amqp.connect(url)
-      // amqp.connect('amqp://localhost')
+      amqp.connect('amqp://localhost')
       .then(conn => {
         return conn.createChannel().then(ch => {
           const data = {
-            senderid:senderid,
+            sender:sender,
             number:number,
-            pesan:pesan,
+            message:message,
           }
           ch.sendToQueue('schedulerwa', Buffer.from(JSON.stringify(data)))
           res.status(200).json({message:"Successfully send message"});
         })
         .finally(() => {
-          setTimeout(function() { conn.close(); }, INTERVAL_DURATION);
+          setTimeout(function() { conn.close(); }, 500);
         })
       })
     } catch(err){
