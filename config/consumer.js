@@ -1,7 +1,8 @@
 const amqp = require('amqplib')
 const axios = require('axios');
-const url = "amqp://localhost";
+// const url = "amqp://localhost";
 // const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc' || "amqp://localhost";
+const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc';
 
 amqp.connect(url)
   .then(conn=> {

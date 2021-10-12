@@ -1,16 +1,16 @@
 const amqp = require('amqplib') 
 var axios = require('axios');
 const INTERVAL_DURATION = 60000;
+// const url = "amqp://localhost";
+// const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc';
 const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc' || "amqp://localhost";
 
 module.exports = {
 
   wa:async(req, res)=>{
     try{
-      // console.log('url ',url)
       const { sender, number, message } = req.body
       amqp.connect(url)
-      amqp.connect('amqp://localhost')
       .then(conn => {
         return conn.createChannel().then(ch => {
           const data = {
@@ -22,7 +22,7 @@ module.exports = {
           res.status(200).json({message:"Successfully send message"});
         })
         .finally(() => {
-          setTimeout(function() { conn.close(); }, 500);
+          setTimeout(function() { conn.close(); }, INTERVAL_DURATION);
         })
       })
     } catch(err){
