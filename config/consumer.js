@@ -1,7 +1,8 @@
 const amqp = require('amqplib')
 const axios = require('axios');
+const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc' || "amqp://localhost";
 
-amqp.connect('amqp://localhost')
+amqp.connect(url)
   .then(conn=> {
     return conn.createChannel().then(ch => {
       const queue1 = ch.assertQueue('schedulerwa', {durable:false})
