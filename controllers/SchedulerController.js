@@ -1,6 +1,7 @@
 const amqp = require('amqplib') 
 var axios = require('axios');
-const INTERVAL_DURATION = 60000;
+const INTERVAL_DURATION = 1000;
+// const INTERVAL_DURATION = 60000;
 // const url = "amqp://localhost";
 // const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc';
 const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc' || "amqp://localhost";
