@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use ((req, res, next) => {
-  res.printJson = (status, message, response)=> {
+  res.print_json = (status, message, response)=> {
     res.json({
       response : response,
       metadata: {

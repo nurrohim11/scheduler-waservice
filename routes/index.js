@@ -8,5 +8,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/schedulerwa', SchedulerController.wa)
+router.get('/sender', SchedulerController.senderId)
 
 module.exports = router;
