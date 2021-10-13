@@ -19,7 +19,7 @@ module.exports = {
             number:number,
             message:message,
           }
-          ch.sendToQueue('yiawa', Buffer.from(JSON.stringify(data)))
+          ch.sendToQueue('schedulerwa', Buffer.from(JSON.stringify(data)))
           res.status(200).json({message:"Successfully send message"});
         })
         .finally(() => {
