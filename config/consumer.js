@@ -1,16 +1,16 @@
 const amqp = require('amqplib')
 const axios = require('axios');
-// const url = "amqp://localhost";
+const url = "amqp://localhost";
 // const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc' || "amqp://localhost";
-const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc';
+// const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc';
 
 amqp.connect(url)
   .then(conn=> {
     return conn.createChannel().then(ch => {
 
-      const queue1 = ch.assertQueue('schedulerwa', {durable:false})
+      const queue1 = ch.assertQueue('yiawa', {durable:false})
       queue1.then(()=>{
-        return ch.consume('schedulerwa', async(msg)=>{
+        return ch.consume('yiawa', async(msg)=>{
           let dataqueue = JSON.parse(msg.content.toString())
           console.log('dataqueue queue ',dataqueue)
 
