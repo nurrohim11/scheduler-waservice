@@ -2,6 +2,7 @@ const amqp = require('amqplib')
 var axios = require('axios');
 const INTERVAL_DURATION = 60000;
 const fs = require("fs");
+const { knex } = require('../config/db');
 const { compare2JsonArray } = require('../helpers/Deepcompare');
 const url = "amqp://localhost";
 // const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc';
@@ -20,7 +21,8 @@ module.exports = {
             number:number,
             message:message,
           }
-          ch.sendToQueue('schedulerwa', Buffer.from(JSON.stringify(data)))
+          // ch.sendToQueue('schedulerwa', Buffer.from(JSON.stringify(data)))
+          ch.sendToQueue(sender, Buffer.from(JSON.stringify(data)))
           res.status(200).json({message:"Successfully send message"});
         })
         .finally(() => {
@@ -35,32 +37,15 @@ module.exports = {
 
   senderId:async(req, res)=>{
     try{
-      const jsondata =[
-        {
-          id:1,
-          sender:'yiawa',
-        },
-        {
-          id:2,
-          sender:'farqa',
-        },
-        {
-          id:3,
-          sender:'kenza',
-        },
-        {
-          id:4,
-          sender:'rohim.dev',
-        },
-        {
-          id:5,
-          sender:'gogon',
-        },
-        {
-          id:6,
-          sender:'gmedia',
-        },
-      ]
+
+      let sender = await knex('wa_agent').where('status',1);
+      const jsondata=[]
+      for(let n=0; n<sender.length; n++){
+        jsondata.push({
+          id:sender[n].id,
+          sender:sender[n].agent_name,
+        })
+      }
       const path = './json/sender.json'
 
       try {
