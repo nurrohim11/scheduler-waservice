@@ -4,8 +4,8 @@ const INTERVAL_DURATION = 60000;
 const fs = require("fs");
 const { knex } = require('../config/db');
 const { compare2JsonArray } = require('../helpers/Deepcompare');
-const url = "amqp://localhost";
-// const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc';
+// const url = "amqp://localhost";
+const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc';
 // const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc' || "amqp://localhost";
 
 module.exports = {
