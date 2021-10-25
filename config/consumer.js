@@ -5,7 +5,7 @@ const fs = require('fs')
 // const url = process.env.MODE == 'development' ? process.env.URI_MQTT_DEVELOPMENT : process.env.URI_MQTT_PRODUCTION
 const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc';
 
-amqp.connect(process.env.URI_MQTT)
+amqp.connect(url)
   .then(conn=> {
     return conn.createChannel().then(async(ch) => {
       const path = await './json/sender.json'
