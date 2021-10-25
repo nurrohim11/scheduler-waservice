@@ -1,4 +1,5 @@
 const amqp = require('amqplib') 
+const url ="amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc"
 
 module.exports = {
 
@@ -6,7 +7,7 @@ module.exports = {
     try{
       const { sender, number, message } = req.body
       
-      const url = process.env.MODE == 'development' ? process.env.URI_MQTT_DEVELOPMENT : process.env.URI_MQTT_PRODUCTION
+      // const url = process.env.MODE == 'development' ? process.env.URI_MQTT_DEVELOPMENT : process.env.URI_MQTT_PRODUCTION
 
       amqp.connect(url)
       .then(conn => {
@@ -34,7 +35,7 @@ module.exports = {
     try{
       const { sender, number, message } = req.body
       
-      const url = process.env.MODE == 'development' ? process.env.URI_MQTT_DEVELOPMENT : process.env.URI_MQTT_PRODUCTION
+      // const url = process.env.MODE == 'development' ? process.env.URI_MQTT_DEVELOPMENT : process.env.URI_MQTT_PRODUCTION
 
       amqp.connect(url)
       .then(conn => {

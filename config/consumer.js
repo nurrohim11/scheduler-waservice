@@ -2,10 +2,8 @@ require('dotenv').config()
 const amqp = require('amqplib')
 const axios = require('axios');
 const fs = require('fs')
-const url = process.env.MODE == 'development' ? process.env.URI_MQTT_DEVELOPMENT : process.env.URI_MQTT_PRODUCTION
-console.log(url)
-
-// const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc';
+// const url = process.env.MODE == 'development' ? process.env.URI_MQTT_DEVELOPMENT : process.env.URI_MQTT_PRODUCTION
+const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc';
 
 amqp.connect(process.env.URI_MQTT)
   .then(conn=> {
