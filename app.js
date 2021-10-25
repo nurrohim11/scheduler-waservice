@@ -29,3 +29,8 @@ app.use ((req, res, next) => {
 app.use('/', indexRouter);
 
 module.exports = app;
+
+// node cron 5-10 menit
+// track send message to docker wa service not use api wa
+// multi channel 
+// jika mengirim pesan gagal di message broker dan wa engine, bisa dikirim lagi gag ?. terus caranya gimana ?.

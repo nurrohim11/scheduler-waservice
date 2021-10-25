@@ -1,14 +1,13 @@
+require('dotenv').config()
 const amqp = require('amqplib')
 const axios = require('axios');
 const fs = require('fs')
-// const url = "amqp://localhost";
-const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc' || "amqp://localhost";
+const url = process.env.MODE == 'development' ? process.env.URI_MQTT_DEVELOPMENT : process.env.URI_MQTT_PRODUCTION
+console.log(url)
+
 // const url = 'amqps://bdqryjuc:FctmJfyXZXG1syIAx8EKZaRzEBmVv5h-@clam.rmq.cloudamqp.com/bdqryjuc';
 
-// example sender
-// const sender = []
-
-amqp.connect(url)
+amqp.connect(process.env.URI_MQTT)
   .then(conn=> {
     return conn.createChannel().then(async(ch) => {
       const path = await './json/sender.json'
@@ -20,8 +19,9 @@ amqp.connect(url)
           }
           const sender = JSON.parse(jsonString)
           for(let j=0; j< sender.length; j++){
-            const queue1 = ch.assertQueue(sender[j].sender, {durable:false})
-            queue1.then(()=>{
+            let senderqueue = "queue"+j
+            senderqueue = ch.assertQueue(sender[j].sender, {durable:false})
+            senderqueue.then(()=>{
               return ch.consume(sender[j].sender, async(msg)=>{
                 let dataqueue = JSON.parse(msg.content.toString())
                 console.log('dataqueue queue ',dataqueue)
@@ -97,5 +97,6 @@ amqp.connect(url)
           });
         })
       }, {noAck:true})
+      
     })
 }).catch(console.warn)

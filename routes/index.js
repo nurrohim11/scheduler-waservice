@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/schedulerwa', SchedulerController.wa)
+router.post('/yiawa', SchedulerController.yiawa)
 router.get('/sender', SchedulerController.senderId)
 
 module.exports = router;
