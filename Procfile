@@ -1,1 +1,0 @@
-web: node ./bin/www & node ./config/consumer.js
