@@ -1,2 +1,5 @@
 node_modules
 Procfile
+Dockerfile
+docker-compose.yml
+.env

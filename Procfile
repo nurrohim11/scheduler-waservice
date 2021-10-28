@@ -1,1 +1,1 @@
-web: node ./bin/www & node ./config/consumer.js & ./config/cron.js
+web: node ./bin/www & node ./config/consumer.js

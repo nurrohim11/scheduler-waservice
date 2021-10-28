@@ -1,13 +1,13 @@
-# nodejs
-FROM node:latest
-# Create app directory
-WORKDIR /usr/src/app
-# Install app dependencies
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 3000
-CMD [ "node", "./bin/www & node ./config/consumer.js & ./config/cron.js" ]
+FROM node:alpine
 
-# rabbitmq
-FROM rabbitmq:latest
+RUN apk update && apk add ca-certificates openssl && update-ca-certificates
+
+RUN mkdir /app
+ADD . /app
+WORKDIR /app
+
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.6.0/wait /wait
+
+RUN chmod +x /wait
+RUN npm install
+CMD /wait && npm start
